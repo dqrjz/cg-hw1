@@ -8,10 +8,6 @@ in vec3 vPos;     // -1 < vPos.x < +1
 
 out vec4 fragColor;
 
-float random(vec2 co){
-    return fract(sin(dot(co.xy ,vec2(12.9898,78.233))) * 43758.5453);
-} // returns a single float value between 0.0 and 1.0
-
 void main() {
 
   // HERE YOU CAN WRITE ANY CODE TO
@@ -51,6 +47,7 @@ void main() {
   // R,G,B EACH RANGE FROM 0.0 TO 1.0
   vec3 color = vec3(red, green, blue) + vec3(0., cyan, cyan) + vec3(0.0001);
 
+  // draw lines
   if (vPos.x > -0.002 && vPos.x < 0.001) {
     color += 0.5 * vec3(max(0., 0.5 * sin(0.5 * uTime)), 0., 0.);
   }
@@ -67,6 +64,7 @@ void main() {
       sqrt(vPos.x * vPos.x + vPos.y * vPos.y) < 0.804) {
     color += 0.05 * vec3(1., 1., 1.) * -min(0., 0.5 * sin(0.5 * uTime));
   }
+
   // THIS LINE OUTPUTS THE FRAGMENT COLOR
   fragColor = vec4(sqrt(color), 1.0);
 }
